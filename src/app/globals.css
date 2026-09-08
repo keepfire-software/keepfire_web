@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  /* Production projection of Keepfire Design System/tokens. See docs/design-contract.md. */
+  --background: #0b0a09;
+  --foreground: #f5f0e9;
+  --body-text: #e4ddd4;
+  --surface: #1a1715;
+  --surface-nav: #100e0d;
+  --surface-panel: #151211;
+  --surface-hover: rgb(255 244 232 / 0.045);
+  --muted: #a39a90;
+  --subtle: #7c736a;
+  --border: rgb(245 240 233 / 0.1);
+  --border-strong: rgb(245 240 233 / 0.16);
+  --accent: #ff6f1d;
+  --accent-hover: #ff8a3d;
+  --accent-foreground: #1a0c02;
+  --focus-ring: #ff8a3d;
+  --accent-tint: rgb(255 111 29 / 0.08);
+  --accent-border: rgb(255 111 29 / 0.28);
+  --success: #3fa97b;
+  --radius-control: 5px;
+  --radius-group: 8px;
+  --radius-card: 12px;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.35);
+  --page-gutter: 16px;
+  --page-max: 70rem;
+  --motion-fast: 130ms;
+  --ease-standard: cubic-bezier(.2, 0, 0, 1);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --background: #f5f0e9;
+  --foreground: #201c19;
+  --body-text: #201c19;
+  --surface: #ffffff;
+  --surface-nav: #e4ddd4;
+  --surface-panel: #f5f0e9;
+  --surface-hover: rgb(11 10 9 / 0.045);
+  --muted: #544c44;
+  --subtle: #7c736a;
+  --border: rgb(11 10 9 / 0.14);
+  --border-strong: rgb(11 10 9 / 0.28);
+  --accent: #c2470a;
+  --accent-hover: #8a3505;
+  --accent-foreground: #ffffff;
+  --focus-ring: #c2470a;
+  --accent-tint: rgb(194 71 10 / 0.08);
+  --accent-border: rgb(194 71 10 / 0.28);
+  --success: #237650;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-body: var(--body-text);
+  --color-surface: var(--surface);
+  --color-surface-nav: var(--surface-nav);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-focus-ring: var(--focus-ring);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--body-text);
+  font-family: var(--font-plex-sans), "Segoe UI", sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--accent-border); }
+
+.site-container {
+  width: min(calc(100% - 2 * var(--page-gutter)), var(--page-max));
+  margin-inline: auto;
+}
+
+.site-header { padding-block: 12px; }
+.site-header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; order: 3; width: 100%; }
+.site-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); }
+.site-nav a:hover { color: var(--foreground); }
+.site-header-action { padding-inline: 12px; font-size: 14px; }
+.brand-lockup { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: .09em; color: var(--foreground); }
+.brand-lockup img { width: 26px; height: 26px; object-fit: contain; }
+.site-footer { padding-block: 32px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.site-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+
+@media (min-width: 24rem) { :root { --page-gutter: 20px; } }
+@media (min-width: 48rem) {
+  :root { --page-gutter: 40px; }
+  .site-header { padding-block: 18px; }
+  .site-nav { order: 0; width: auto; }
+  .brand-lockup { font-size: 15px; gap: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-fast: 0ms; }
+}

@@ -1,0 +1,77 @@
+.page { min-height: 100svh; overflow-wrap: anywhere; }
+.hero { padding-block: 32px 48px; }
+.heroGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.intro { min-width: 0; }
+.eyebrow { color: var(--accent-hover); font-family: var(--font-plex-mono), monospace; font-size: .6875rem; font-weight: 500; line-height: 1.6; letter-spacing: .11em; text-transform: uppercase; }
+.intro h1 { margin-top: 20px; max-width: 14em; color: var(--foreground); font-size: clamp(2.125rem, 8.5vw, 2.375rem); font-weight: 600; line-height: 1.1; letter-spacing: -.015em; text-wrap: pretty; }
+.lead { margin-top: 20px; max-width: 32em; font-size: 1.0625rem; line-height: 1.55; color: var(--muted); }
+.lead + .lead { margin-top: 16px; font-size: .9375rem; }
+.actions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; margin-top: 24px; }
+.actions .finePrint { margin-top: 0; text-align: left; }
+.pricing { min-width: 0; padding: 24px 20px; background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 16px; font-variant-numeric: tabular-nums; }
+.priceValue { font-size: 3rem; line-height: 1; font-weight: 600; letter-spacing: -.025em; color: var(--foreground); }
+.priceUnit { font-size: 1.0625rem; color: var(--muted); }
+.trial { margin-top: 12px; font-size: 1.0625rem; font-weight: 500; color: var(--accent-hover); }
+.offer { margin-top: 24px; padding: 20px 16px; border: 1px solid var(--accent-border); border-radius: var(--radius-group); background: var(--accent-tint); }
+.offerLabel { margin-top: 12px; font-size: .875rem; color: var(--body-text); }
+.offerAmount { display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; margin-top: 8px; font-size: clamp(2rem, 11vw, 2.75rem); font-weight: 600; line-height: 1.1; letter-spacing: -.025em; font-variant-numeric: tabular-nums; }
+.offerAmount s { color: var(--muted); text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+.offerAmount span { color: var(--foreground); }
+.offerLimit { margin-top: 12px; font-size: .875rem; line-height: 1.5; }
+.inclusions { display: grid; gap: 12px; margin-top: 24px; font-size: .9375rem; line-height: 1.5; }
+.inclusions li { display: flex; align-items: flex-start; gap: 12px; }
+.inclusions svg { flex-shrink: 0; margin-top: 3px; color: var(--success); }
+.cardAction { width: 100%; margin-top: 24px; }
+.finePrint { margin-top: 12px; font-size: .8125rem; line-height: 1.5; text-align: center; color: var(--muted); }
+.benefits { padding-bottom: 48px; }
+.benefitGrid { display: grid; grid-template-columns: minmax(0, 1fr); }
+.benefit { display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 12px; padding-block: 24px; border-top: 1px solid var(--border); }
+.benefit:last-child { padding-bottom: 0; }
+.benefit > .eyebrow { grid-row: 1 / 3; padding-top: 4px; }
+.benefitTitle { font-size: 1.0625rem; line-height: 1.3; font-weight: 600; color: var(--foreground); }
+.benefitCopy { margin-top: 8px; font-size: .9375rem; line-height: 1.6; color: var(--muted); }
+.launch, .closing { padding-block: 48px; background: var(--surface-nav); }
+.launchGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.launch h2, .closing h2 { max-width: 22em; color: var(--foreground); font-size: 1.875rem; font-weight: 600; line-height: 1.15; letter-spacing: -.015em; text-wrap: pretty; }
+.launchCopy { font-size: 1rem; line-height: 1.6; color: var(--muted); }
+.launchNote { margin-top: 20px; color: var(--body-text); font-size: .9375rem; line-height: 1.5; font-weight: 500; }
+.faq { padding-block: 48px; }
+.faqInner { max-width: 51.25rem; }
+.faq h2 { font-size: 1.5rem; line-height: 1.2; font-weight: 600; color: var(--foreground); }
+.questions { margin-top: 24px; border-bottom: 1px solid var(--border); }
+.questions details { border-top: 1px solid var(--border); }
+.questions summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; padding-block: 20px; font-size: 1rem; font-weight: 500; line-height: 1.4; cursor: pointer; list-style: none; }
+.questions summary::-webkit-details-marker { display: none; }
+.questions summary svg { flex-shrink: 0; color: var(--muted); transition: transform var(--motion-fast) var(--ease-standard); }
+.questions details[open] svg { transform: rotate(180deg); }
+.answer { padding-bottom: 24px; font-size: .9375rem; line-height: 1.6; color: var(--muted); }
+.closingCopy { max-width: 32em; margin-top: 20px; color: var(--muted); font-size: 1.0625rem; line-height: 1.6; }
+
+@media (min-width: 36rem) {
+  .heroGrid { max-width: 38rem; }
+  .actions { align-items: flex-start; }
+  .pricing { padding: 32px; }
+}
+@media (min-width: 48rem) {
+  .hero { padding-block: 40px 64px; }
+  .intro h1 { font-size: 3rem; }
+  .benefits { padding-bottom: 64px; }
+  .benefitGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .benefit { display: block; padding-top: 24px; padding-bottom: 0; }
+  .benefitTitle { margin-top: 16px; font-size: 1.25rem; letter-spacing: -.015em; }
+  .launch, .closing, .faq { padding-block: 80px; }
+  .launch h2 { font-size: 2.375rem; }
+  .closing h2 { font-size: 2.75rem; }
+}
+@media (min-width: 64rem) {
+  .hero { padding-block: 40px 96px; }
+  .heroGrid { max-width: var(--page-max); grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+  .intro h1 { font-size: clamp(3rem, 4.1vw, 3.625rem); line-height: 1.02; letter-spacing: -.022em; }
+  .lead { font-size: 1.25rem; margin-top: 28px; }
+  .lead + .lead { font-size: 1.0625rem; margin-top: 20px; }
+  .actions { margin-top: 32px; }
+  .benefits { padding-bottom: 96px; }
+  .launchGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 80px; }
+  .launchCopy { font-size: 1.0625rem; }
+}
