@@ -186,8 +186,7 @@ export default function Home() {
             <h2>See what your current process is letting through.</h2>
             <p className={styles.closingCopy}>
               Twenty minutes, no card, and an honest answer on whether Keepfire
-              is worth your time. We&apos;ll be clear about when setup becomes
-              available.
+              is worth your time.
             </p>
             <div className={styles.actions}>
               <ActionLink {...fitCallLinkProps}>
