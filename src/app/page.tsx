@@ -23,6 +23,25 @@ const benefits = [
   ],
 ] as const;
 
+const included = [
+  ["Missed-call recovery", ""],
+  ["Callback and estimate follow-up", ""],
+  ["Job loose-end tracking", ""],
+  [
+    "Phone and text infrastructure",
+    "Keep your existing number, with normal calling and texting included.",
+  ],
+  ["Done-for-you setup and configuration", ""],
+  ["Owner onboarding and team training", ""],
+  ["Launch support", ""],
+] as const;
+
+const terms = [
+  "First 21 days free",
+  "Month-to-month",
+  "First paid month refundable",
+] as const;
+
 const questions = [
   [
     "When can I get started?",
@@ -34,7 +53,7 @@ const questions = [
   ],
   [
     "What will it cost?",
-    "Launch pricing is planned at $500 a month, with setup and training included. We will confirm the final plan before any commitment.",
+    "Launch pricing is $500/month. Implementation is $1,000, waived for our first 5 customers. Your first 21 days are free. We will confirm the final plan before any commitment.",
   ],
   [
     "Can I book a call before setup is available?",
@@ -68,7 +87,7 @@ export default function Home() {
               </p>
               <p className={styles.lead}>
                 Keepfire turns those loose ends into visible, owned work until
-                they're actually handled.
+                they&apos;re actually handled.
               </p>
               <div className={styles.actions}>
                 <ActionLink {...fitCallLinkProps}>
@@ -140,6 +159,69 @@ export default function Home() {
                 <p className={styles.benefitCopy}>{description}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className={styles.included}>
+          <div className={`site-container ${styles.includedGrid}`}>
+            <div className={styles.includedIntro}>
+              <p className={styles.eyebrow}>What you get</p>
+              <h2 className={styles.includedTitle}>
+                What Keepfire brings to your shop
+              </h2>
+              <ul className={styles.includedList}>
+                {included.map(([label, detail]) => (
+                  <li key={label}>
+                    <span className={styles.includedLabel}>{label}</span>
+                    {detail ? (
+                      <span className={styles.includedDetail}>{detail}</span>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <aside
+              className={styles.summary}
+              aria-label="Launch pricing summary"
+            >
+              <p className={styles.summaryLead}>All of this for</p>
+              <div className={styles.price}>
+                <span className={styles.priceValue}>$500</span>
+                <span className={styles.priceUnit}>/ month</span>
+              </div>
+
+              <p className={styles.setup}>
+                <s aria-label="Regular setup fee: $1,000">$1,000</s>
+                <span className={styles.setupNote}>setup one-time</span>
+              </p>
+              <p className={styles.waived}>
+                <Check size={14} strokeWidth={1.75} aria-hidden="true" />
+                Waived for our first 5 customers
+              </p>
+
+              <ul className={styles.terms}>
+                {terms.map((term) => (
+                  <li key={term}>
+                    <Check size={16} strokeWidth={1.75} aria-hidden="true" />
+                    {term}
+                  </li>
+                ))}
+              </ul>
+
+              <div className={styles.payback}>
+                <p className={styles.paybackLead}>
+                  $1,000 recovered can cover the month.
+                </p>
+                <p className={styles.paybackMath}>
+                  <span className={styles.paybackValue}>$1,000</span> in
+                  recovered revenue &times;{" "}
+                  <span className={styles.paybackValue}>50%</span> gross margin
+                  = <span className={styles.paybackResult}>$500</span>
+                </p>
+                <p className={styles.paybackNote}>gross profit</p>
+              </div>
+            </aside>
           </div>
         </section>
 

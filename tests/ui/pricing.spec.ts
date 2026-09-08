@@ -24,13 +24,44 @@ for (const width of [320, 390, 768, 1440]) {
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByText("Coming soon for small HVAC companies")).toBeVisible();
-    const price = page.getByRole("complementary", { name: "Launch pricing" });
+    await expect(page.getByText("NOW SELECTING OUR FIRST 5 HVAC COMPANIES")).toBeVisible();
+    const price = page.getByRole("complementary", { name: "Launch pricing", exact: true });
     await expect(price.getByText("$500", { exact: true })).toBeVisible();
     await expect(price.locator("s")).toHaveText("$1,000");
     await expect(price.locator("s")).toHaveCSS("text-decoration-line", "line-through");
     await expect(price.getByText("$0", { exact: true })).toBeVisible();
     await expect(price.getByText(/first 5 customers/)).toBeVisible();
+    await expectContentFits(page);
+
+    await expect(
+      page.getByRole("heading", { name: "What Keepfire brings to your shop" }),
+    ).toBeVisible();
+    const included = page.getByRole("list").filter({ hasText: "Launch support" }).first();
+    for (const item of [
+      "Missed-call recovery",
+      "Callback and estimate follow-up",
+      "Job loose-end tracking",
+      "Phone and text infrastructure",
+      "Done-for-you setup and configuration",
+      "Owner onboarding and team training",
+      "Launch support",
+    ]) {
+      await expect(included.getByText(item, { exact: true })).toBeVisible();
+    }
+    const summary = page.getByRole("complementary", {
+      name: "Launch pricing summary",
+      exact: true,
+    });
+    await expect(summary.getByText("$500", { exact: true }).first()).toBeVisible();
+    await expect(summary.getByText("/ month")).toBeVisible();
+    await expect(summary.locator("s")).toContainText("$1,000");
+    await expect(summary.locator("s")).toHaveCSS("text-decoration-line", "line-through");
+    await expect(summary.getByText(/Waived for our first 5 customers/i)).toBeVisible();
+    await expect(summary.getByText("First 21 days free")).toBeVisible();
+    await expect(summary.getByText("Month-to-month")).toBeVisible();
+    await expect(summary.getByText("First paid month refundable")).toBeVisible();
+    await expect(summary.getByText(/recovered/).first()).toBeVisible();
+    await expect(summary.getByText(/profit = Keepfire/)).toBeVisible();
     await expectContentFits(page);
 
     const calls = page.getByRole("link", { name: /Book a.*fit call/ });
@@ -46,15 +77,15 @@ for (const width of [320, 390, 768, 1440]) {
       await expect(link).toHaveCSS("text-transform", "none");
     }
 
-    const summary = page.locator("summary").first();
-    await summary.focus();
-    await expect(summary).toBeFocused();
-    await expect(summary).toHaveCSS("outline-style", "solid");
+    const question = page.locator("summary").first();
+    await question.focus();
+    await expect(question).toBeFocused();
+    await expect(question).toHaveCSS("outline-style", "solid");
     await page.keyboard.press("Enter");
     await expect(page.locator("details").first()).toHaveAttribute("open", "");
     await expect(page.locator("details").first().locator("p")).toBeVisible();
     await expectContentFits(page);
-    await summary.click();
+    await question.click();
     await expect(page.locator("details").first()).not.toHaveAttribute("open");
 
     await page.screenshot({ path: testInfo.outputPath(`pricing-${width}.png`), fullPage: true });
